@@ -1,5 +1,10 @@
 # Data_migration_project
-csv vers MongoDB via Docker avec script python
+
+## Context
+
+Ce projet a été réalisé dans le cadre de mon parcours de formation 'Data Engineer' avec OpenClassrooms.
+
+Ce projet consiste en une migraion de données issue d'un fichier csv vers une base de donnée MongoDB en se servant d'un script python
 
 ## 📌 MongoDB (Local)
 

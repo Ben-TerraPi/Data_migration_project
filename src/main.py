@@ -1,8 +1,12 @@
 import sys
-from utils import connect_to_mongodb, load_csv_data, migrate_data
+from src.utils import import_data, connect_to_mongodb, load_csv_data, migrate_data
 
 
 def main():
+    print("Téléchargement du CSV")
+
+    import_data()
+
     print("Démarrage de la migration")
     
     # Connexion à MongoDB

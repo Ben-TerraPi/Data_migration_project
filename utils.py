@@ -5,18 +5,16 @@ import os
 
 def connect_to_mongodb():
     """
-    Établit la connexion à MongoDB
+    Connexion à MongoDB
     """
     try:
         client = MongoClient('mongodb://localhost:27017/')
-        # Test de la connexion
-        client.admin.command('ping')
-        print("✅ Connexion à MongoDB réussie")
+        print("✅ Connexion MongoDB")
         return client
     except Exception as e:
-        print(f"❌ Erreur de connexion à MongoDB: {e}")
+        print(f"❌ Erreur de connexion: {e}")
         return None
-
+    
 
 def load_csv_data(file_path):
     """
@@ -40,10 +38,10 @@ def migrate_data(collection, df):
     Migre les données du DataFrame vers MongoDB
     """
     try:
-        # Convertir le DataFrame en liste de dictionnaires
+        # df to dictionnaires pour insertion documents
         records = df.to_dict('records')
         
-        # Insérer les données
+        # Insertion
         result = collection.insert_many(records)
         print(f"✅ Migration réussie: {len(result.inserted_ids)} documents insérés")
         return True

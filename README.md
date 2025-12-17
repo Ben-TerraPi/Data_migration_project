@@ -30,3 +30,7 @@ pip install pymongo
 
 ---
 
+## 📚 Ressources utiles
+
+- [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.
+- [PyMongo Documentation](https://pymongo.readthedocs.io/en/stable/) - Documentation pour utiliser MongoDB avec Python.

@@ -30,7 +30,7 @@ pip install pymongo
 
 ## Création de la BDD et de sa collection
 
-Cette partie a été effectué direction avec l'interface MongoDB Compass.
+Cette partie a été effectué directement avec l'interface MongoDB Compass.
 
 - Une nouvelle connection a été ajouté en utilisant le port local par défaut:
 ```sh

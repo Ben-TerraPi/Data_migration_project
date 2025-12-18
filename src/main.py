@@ -1,5 +1,5 @@
 import sys
-from src.utils import import_data, connect_to_mongodb, load_csv_data, migrate_data
+from utils import import_data, connect_to_mongodb, load_csv_data, migrate_data
 
 
 def main():

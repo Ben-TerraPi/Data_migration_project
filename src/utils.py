@@ -8,8 +8,8 @@ def import_data():
     # Téléchargement dans le cache par défaut
     path = kagglehub.dataset_download("prasad22/healthcare-dataset")
 
-    # Creation du dossier de destination à la racine du projet
-    project_root = os.path.dirname(os.path.abspath(__file__))
+    # Création du dossier de destination à la racine du projet
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     dataset_dir = os.path.join(project_root, "dataset")
     os.makedirs(dataset_dir, exist_ok=True)
 

@@ -1,7 +1,7 @@
 import os
 import sys
 import logging
-from utils import import_data, connect_to_mongodb, load_csv_data, migrate_data
+from utils import import_data, load_csv_data, normalize_df, check_dataframe, connect_to_mongodb, migrate_data, check_collection, test_compare
 
 
 # Création du dossier logs à la racine si besoin
@@ -34,14 +34,32 @@ if __name__ == "__main__":
             logging.error("❌ Chargement du CSV échoué.")
             sys.exit(1)
 
-        # Création du serveur MongoDB
+        # Nettoyage du DataFrame
+        df = normalize_df(df)
+
+        # Contrôle du DataFrame avant migration
+        df_info = check_dataframe(df)
+
+        # Création database et collection MongoDB 
         client = connect_to_mongodb()
         if not client:
             sys.exit(1)
+        db = client['datasolutech']
+        collection = db['healthcare_dataset']
+
+        # Vider la collection avant migration
+        collection.delete_many({})
 
         # Migration des données
         logging.info("Démarrage de la migration")
-        migrate_data(client, df)
+        migrate_data(collection, df)
+
+        # Contrôle de la collection après migration
+        mongo_info = check_collection(collection, colonnes_ref=df.columns.tolist())
+
+        # Compare le dataframe et la collection
+        test_compare(df_info, mongo_info)
+
 
     except Exception as e:
         logging.error(f"❌ Erreur du script: {e}")

@@ -91,6 +91,49 @@ def connect_to_mongodb():
     return client
 ```
 
+### Schéma de la collection `healthcare_dataset`
+
+| Champ                | Type      | Description                        |
+|----------------------|-----------|------------------------------------|
+| _id                  | ObjectId  | Identifiant unique MongoDB         |
+| Name                 | string    | Nom du patient                     |
+| Age                  | int       | Âge                                |
+| Gender               | string    | Sexe                               |
+| Blood Type           | string    | Groupe sanguin                     |
+| Medical Condition    | string    | Pathologie principale              |
+| Date of Admission    | string    | Date d'admission (YYYY-MM-DD)      |
+| Doctor               | string    | Médecin référent                   |
+| Hospital             | string    | Hôpital                            |
+| Insurance Provider   | string    | Assurance                          |
+| Billing Amount       | float     | Montant facturé                    |
+| Room Number          | int       | Numéro de chambre                  |
+| Admission Type       | string    | Type d'admission                   |
+| Discharge Date       | string    | Date de sortie (YYYY-MM-DD)        |
+| Medication           | string    | Médication principale              |
+| Test Results         | string    | Résultat des tests                 |
+
+### Exemple de document
+
+```sh
+{
+  "_id": "ObjectId('...')",
+  "Name": "Elizabeth Jackson",
+  "Age": 30,
+  "Gender": "Female",
+  "Blood Type": "B-",
+  "Medical Condition": "Cancer",
+  "Date of Admission": "2024-01-31",
+  "Doctor": "Matthew Smith",
+  "Hospital": "Sons and Miller",
+  "Insurance Provider": "Blue Cross",
+  "Billing Amount": 18856.28,
+  "Room Number": 328,
+  "Admission Type": "Urgent",
+  "Discharge Date": "2024-02-02",
+  "Medication": "Paracetamol",
+  "Test Results": "Normal"
+}
+```
 ---
 
 ## 📚 Ressources utiles

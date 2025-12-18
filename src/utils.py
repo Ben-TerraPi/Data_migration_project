@@ -14,10 +14,14 @@ def import_data():
     dataset_dir = os.path.join(project_root, "dataset")
     os.makedirs(dataset_dir, exist_ok=True)
 
-    # Copie du fichier
+    # Copie du fichier avec vérification si déjà présent
     for filename in os.listdir(path):
         src_file = os.path.join(path, filename)
         dst_file = os.path.join(dataset_dir, filename)
+
+        if os.path.exists(dst_file):
+            logging.info(f"Fichier déjà présent, non copié : {filename}")
+            continue
         
         with open(src_file, 'rb') as src, open(dst_file, 'wb') as dst:
             dst.write(src.read())

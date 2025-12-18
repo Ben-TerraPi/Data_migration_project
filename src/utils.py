@@ -2,6 +2,7 @@ import kagglehub
 from pymongo import MongoClient
 import pandas as pd
 import os
+import logging
 
 
 def import_data():
@@ -21,9 +22,9 @@ def import_data():
         with open(src_file, 'rb') as src, open(dst_file, 'wb') as dst:
             dst.write(src.read())
         
-        print(f"Fichier copié: {filename}")
+        logging.info(f"Fichier copié: {filename}")
 
-    print("Dataset disponible dans:", dataset_dir)
+    logging.info(f"Dataset disponible dans: {dataset_dir}")
 
 
 def connect_to_mongodb():
@@ -32,10 +33,10 @@ def connect_to_mongodb():
     """
     try:
         client = MongoClient('mongodb://localhost:27017/')
-        print("✅ Connexion MongoDB")
+        logging.info("✅ Connexion MongoDB")
         return client
     except Exception as e:
-        print(f"❌ Erreur de connexion: {e}")
+        logging.error(f"❌ Erreur de connexion: {e}")
         return None
     
 
@@ -45,14 +46,14 @@ def load_csv_data(file_path):
     """
     try:
         if not os.path.exists(file_path):
-            print(f"❌ Fichier '{file_path}' introuvable")
+            logging.error(f"❌ Fichier '{file_path}' introuvable")
             return None
         
         df = pd.read_csv(file_path)
-        print(f"✅ Fichier CSV chargé: {len(df)} lignes")
+        logging.info(f"✅ Fichier CSV chargé: {len(df)} lignes")
         return df
     except Exception as e:
-        print(f"❌ Erreur lors du chargement du CSV: {e}")
+        logging.error(f"❌ Erreur lors du chargement du CSV: {e}")
         return None
 
 
@@ -66,8 +67,8 @@ def migrate_data(collection, df):
         
         # Insertion
         result = collection.insert_many(records)
-        print(f"✅ Migration réussie: {len(result.inserted_ids)} documents insérés")
+        logging.info(f"✅ Migration réussie: {len(result.inserted_ids)} documents insérés")
         return True
     except Exception as e:
-        print(f"❌ Erreur lors de la migration: {e}")
+        logging.error(f"❌ Erreur lors de la migration: {e}")
         return False

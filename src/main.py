@@ -21,33 +21,34 @@ logging.basicConfig(
     ]
 )
 
-
 if __name__ == "__main__":
-    # Récupération du CSV source
-    logging.info("Téléchargement du CSV")
-    import_data()
+    try:
+        # Récupération du CSV source
+        logging.info("Téléchargement du CSV")
+        import_data()
 
-    # Chargement du CSV dans un DataFrame
-    csv_file = "dataset/healthcare_dataset.csv"  
-    df = load_csv_data(csv_file)
-    if df is None:
-        logging.error("❌ Chargement du CSV échoué.")
-        sys.exit(1)
+        # Chargement du CSV dans un DataFrame
+        csv_file = "dataset/healthcare_dataset.csv"  
+        df = load_csv_data(csv_file)
+        if df is None:
+            logging.error("❌ Chargement du CSV échoué.")
+            sys.exit(1)
 
-    # Création du serveur MongoDB
-    client = connect_to_mongodb()
-    if not client:
-        sys.exit(1)
-    
-    try:        
+        # Création du serveur MongoDB
+        client = connect_to_mongodb()
+        if not client:
+            sys.exit(1)
+
         # Migration des données
         logging.info("Démarrage de la migration")
         migrate_data(client, df)
-        
+
     except Exception as e:
-        logging.error(f"❌ Erreur migration: {e}")
-        
+        logging.error(f"❌ Erreur du script: {e}")
+        sys.exit(1)
     finally:
-        # Fermeture de la connexion
-        client.close()
-        logging.info("Connexion MongoDB fermée")
+        try:
+            client.close()
+            logging.info("Connexion MongoDB fermée")
+        except Exception:
+            pass

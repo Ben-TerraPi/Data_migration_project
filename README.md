@@ -70,17 +70,11 @@ def load_csv_data(file_path):
     """
     Charge les données depuis un fichier CSV
     """
-    try:
-        if not os.path.exists(file_path):
-            logging.error(f"❌ Fichier '{file_path}' introuvable")
-            return None
-        
-        df = pd.read_csv(file_path)
-        logging.info(f"✅ Fichier CSV chargé: {len(df)} lignes")
-        return df
-    except Exception as e:
-        logging.error(f"❌ Erreur lors du chargement du CSV: {e}")
-        return None
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Fichier '{file_path}' introuvable")
+    df = pd.read_csv(file_path)
+    logging.info(f"Fichier CSV chargé: {len(df)} lignes")
+    return df
 ```
 
 ### 3. Création du serveur MongoDB
@@ -92,13 +86,9 @@ def connect_to_mongodb():
     """
     Connexion à MongoDB
     """
-    try:
-        client = MongoClient('mongodb://localhost:27017/')
-        logging.info("✅ Connexion MongoDB")
-        return client
-    except Exception as e:
-        logging.error(f"❌ Erreur de connexion: {e}")
-        return None
+    client = MongoClient('mongodb://localhost:27017/')
+    logging.info("Connexion MongoDB")
+    return client
 ```
 
 ---

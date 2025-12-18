@@ -27,20 +27,20 @@ if __name__ == "__main__":
     logging.info("Téléchargement du CSV")
     import_data()
 
+    # Chargement du fichier CSV
+    csv_file = "dataset/healthcare_dataset.csv"  
+    df = load_csv_data(csv_file)
+    if df is None:
+        logging.error("❌ Chargement du CSV échoué.")
+        sys.exit(1)
+
     # Connexion à MongoDB
     logging.info("Démarrage de la migration")
     client = connect_to_mongodb()
     if not client:
         sys.exit(1)
     
-    try:
-        # Chargement du fichier CSV
-        csv_file = "dataset/healthcare_dataset.csv"  
-        df = load_csv_data(csv_file)
-        if df is None:
-            logging.error("❌ Chargement du CSV échoué.")
-            sys.exit(1)
-        
+    try:        
         # Migration des données
         migrate_data(client, df)
         

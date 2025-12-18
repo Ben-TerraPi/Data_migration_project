@@ -63,7 +63,7 @@ def import_data():
     logging.info(f"Dataset disponible dans: {dataset_dir}")
 ```
 
-### 2. Création de la BDD MongoDB
+### 2. Création du serveur MongoDB
 
 Une connection est ajouté et ouverte en utilisant le port local par défaut:
 

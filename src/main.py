@@ -34,10 +34,6 @@ if __name__ == "__main__":
         sys.exit(1)
     
     try:
-        # Sélection de la base et collection
-        db = client['datasolutech']
-        collection = db['healthcare_dataset']
-
         # Chargement du fichier CSV
         csv_file = "dataset/healthcare_dataset.csv"  
         df = load_csv_data(csv_file)
@@ -46,7 +42,7 @@ if __name__ == "__main__":
             sys.exit(1)
         
         # Migration des données
-        migrate_data(collection, df)
+        migrate_data(client, df)
         
         logging.info("✅ Migration terminée avec succès!")
         

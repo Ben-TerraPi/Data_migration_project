@@ -61,11 +61,14 @@ def load_csv_data(file_path):
         return None
 
 
-def migrate_data(collection, df):
+def migrate_data(client, df):
     """
     Migre les données du DataFrame vers MongoDB
     """
     try:
+        # Création de la base et collection
+        db = client['datasolutech']
+        collection = db['healthcare_dataset']
         # df to dictionnaires pour insertion documents
         records = df.to_dict('records')
         

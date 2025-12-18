@@ -8,15 +8,16 @@ Ce projet intitulé `Maintenez et documentez un système de stockage des donnée
 
 ---
 
-## 📌 MongoDB (Local)
+## 🛠 Installations
+
+### 🍃 MongoDB (Local)
 
 Ce projet utilise **MongoDB** comme base de données NoSQL.
 
-### 🛠 Installations
-1. **MongoDB Community Server** :
+**MongoDB Community Server** :
    - Télécharger depuis [le site officiel](https://www.mongodb.com/try/download/community).
 
-2. **Outils** :
+**Outils** :
    - [MongoDB Compass](https://www.mongodb.com/products/compass).
    - [Extension MongoDB pour VS Code](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode) (pour manipuler la base directement depuis l'éditeur).
 

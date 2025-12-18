@@ -30,7 +30,7 @@ pip install pymongo
 
 ## Fonctionnement par étape du script `src/main.py`
 
-Nous retrouvons dans le fichier `src/utils.py` les principales fonctions utilisées dans le script.
+Nous retrouvons dans le fichier `src/utils.py` les fonctions ci-dessous utilisées dans le script.
 
 ### 1. Récupération du CSV source
 
@@ -63,7 +63,27 @@ def import_data():
     logging.info(f"Dataset disponible dans: {dataset_dir}")
 ```
 
-### 2. Création du serveur MongoDB
+### 2. Chargement du CSV dans un DataFrame
+
+```sh
+def load_csv_data(file_path):
+    """
+    Charge les données depuis un fichier CSV
+    """
+    try:
+        if not os.path.exists(file_path):
+            logging.error(f"❌ Fichier '{file_path}' introuvable")
+            return None
+        
+        df = pd.read_csv(file_path)
+        logging.info(f"✅ Fichier CSV chargé: {len(df)} lignes")
+        return df
+    except Exception as e:
+        logging.error(f"❌ Erreur lors du chargement du CSV: {e}")
+        return None
+```
+
+### 3. Création du serveur MongoDB
 
 Une connection est ajouté et ouverte en utilisant le port local par défaut:
 

@@ -180,6 +180,8 @@ Grâce à la fonction `test_compare` nous reprenons les informations de l'étape
 
 ### 10. Fermeture de la connection MongoDB
 
+Utilisation de la méthode `.close()` de la librairie pymongo.
+
 ---
 
 ## 📚 Ressources utiles

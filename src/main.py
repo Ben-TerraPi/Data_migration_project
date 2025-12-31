@@ -23,41 +23,41 @@ logging.basicConfig(
 
 if __name__ == "__main__":
     try:
-        # Récupération du CSV source
+        # 1. Récupération du CSV source
         logging.info("Téléchargement du CSV")
         import_data()
 
-        # Chargement du CSV dans un DataFrame
+        # 2. Chargement du CSV dans un DataFrame
         csv_file = "dataset/healthcare_dataset.csv"  
         df = load_csv_data(csv_file)
         if df is None:
             logging.error("❌ Chargement du CSV échoué.")
             sys.exit(1)
 
-        # Nettoyage du DataFrame
+        # 3. Nettoyage du DataFrame
         df = normalize_df(df)
 
-        # Contrôle du DataFrame avant migration
+        # 4. Contrôle du DataFrame avant migration
         df_info = check_dataframe(df)
 
-        # Création database et collection MongoDB 
+        # 5. Création database et collection MongoDB 
         client = connect_to_mongodb()
         if not client:
             sys.exit(1)
         db = client['datasolutech']
         collection = db['healthcare_dataset']
 
-        # Vider la collection avant migration
+        # 6. Vider la collection avant migration
         collection.delete_many({})
 
-        # Migration des données
+        # 7. Migration des données
         logging.info("Démarrage de la migration")
         migrate_data(collection, df)
 
-        # Contrôle de la collection après migration
+        # 8. Contrôle de la collection après migration
         mongo_info = check_collection(collection, colonnes_ref=df.columns.tolist())
 
-        # Compare le dataframe et la collection
+        # 9. Compare le dataframe et la collection
         test_compare(df_info, mongo_info)
 
 
@@ -66,6 +66,7 @@ if __name__ == "__main__":
         sys.exit(1)
     finally:
         try:
+            # 10. Fermeture de la connection MongoDB
             client.close()
             logging.info("Connexion MongoDB fermée")
         except Exception:

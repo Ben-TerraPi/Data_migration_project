@@ -30,7 +30,8 @@ pip install pymongo
 
 ## Fonctionnement par étape du script `src/main.py`
 
-Nous retrouvons dans le fichier `src/utils.py` les fonctions ci-dessous utilisées dans le script. Un logger est de plus configuré pour s'assurer du bon fonctionnement de ce script.
+Nous retrouvons dans le fichier `src/utils.py` toutes les fonctions utilisées à chaque étapes du script. 
+Un logger est de plus configuré pour s'assurer du bon déroulement de ce script.
 
 ### 1. Récupération du CSV source
 
@@ -75,6 +76,8 @@ Un nettoyage est effectué pour corriger la « casse irrégulière » des no
 
 Ici la fonction `check_dataframe` va servir à afficher dans les logs le nom et le type des différentes colonnes. Et dans un deuxième temps elle sera utilisé pour comparer les données après migration.
 
+`df_info = check_dataframe(df)`
+
 ### 5. Création database et collection MongoDB
 
 Une connection est ajouté et ouverte en utilisant le port local par défaut:
@@ -100,7 +103,7 @@ db = client['datasolutech']
 collection = db['healthcare_dataset']
 ```
 
-### Schéma de la collection `healthcare_dataset`
+## Schéma de la collection `healthcare_dataset`
 
 | Champ                | Type      | Description                        |
 |----------------------|-----------|------------------------------------|
@@ -121,7 +124,7 @@ collection = db['healthcare_dataset']
 | Medication           | string    | Médication principale              |
 | Test Results         | string    | Résultat des tests                 |
 
-### Exemple de document
+## Exemple de document
 
 ```sh
 {
@@ -143,6 +146,40 @@ collection = db['healthcare_dataset']
   "Test Results": "Normal"
 }
 ```
+
+### 6. Vider la collection avant migration
+
+Cette étape avec la commande `.delete_many({})` de la librairie pymongo est une sécurité pour éviter les doublons si le script est exécuté plusieurs fois.
+
+### 7. Migration des données
+
+La migration des données est effectuée avec cette fonction:
+
+```sh
+def migrate_data(collection, df):
+    """
+    Migre les données du DataFrame vers MongoDB
+    """
+    # df to dictionnaires pour insertion documents
+    records = df.to_dict('records')
+    # Insertion
+    result = collection.insert_many(records)
+    logging.info(f"✅ Migration réussie: {len(result.inserted_ids)} documents insérés")
+    return True
+```
+
+### 8. Contrôle de la collection après migration
+
+Dans le même principe que l'étape 4 la fonction `check_collection` vérifie l'intégrité de la collection MongoDB après migration. Elle retourne un dictionnaire avec colonnes, types, doublons, valeurs manquantes qui sera affiché dans les logs.
+
+`mongo_info = check_collection(collection, colonnes_ref=df.columns.tolist())`
+
+### 9. Compare le dataframe et la collection
+
+Grâce à la fonction `test_compare` nous reprenons les informations de l'étape 4 et 8 pour comparaison, les résultats sont synthétisés dans les logs.
+
+### 10. Fermeture de la connection MongoDB
+
 ---
 
 ## 📚 Ressources utiles

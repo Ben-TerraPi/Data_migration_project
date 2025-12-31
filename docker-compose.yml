@@ -6,9 +6,10 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
 
   migration:
     build: .
@@ -16,7 +17,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URI=mongodb://admin:admin@mongodb:27017/
+      - MONGO_URI=mongodb://root:root@mongodb:27017/
 
 volumes:
   mongo_data:

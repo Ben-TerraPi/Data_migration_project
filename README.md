@@ -230,6 +230,12 @@ docker-compose down
 
 ---
 
+# Vérification BDD MongoDB
+
+```sh
+mongodb://admin:admin@localhost:27018
+```
+
 ## 📚 Ressources utiles
 
 - [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.

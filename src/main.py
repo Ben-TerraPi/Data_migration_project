@@ -1,7 +1,7 @@
 import os
 import sys
 import logging
-from utils import import_data, connect_to_mongodb, load_csv_data, migrate_data
+from utils import import_data, load_csv_data, normalize_df, check_dataframe, connect_to_mongodb, migrate_data, check_collection, test_compare
 
 
 # Création du dossier logs à la racine si besoin
@@ -21,38 +21,53 @@ logging.basicConfig(
     ]
 )
 
-
 if __name__ == "__main__":
-    # Import du CSV
-    logging.info("Téléchargement du CSV")
-    import_data()
-
-    # Connexion à MongoDB
-    logging.info("Démarrage de la migration")
-    client = connect_to_mongodb()
-    if not client:
-        sys.exit(1)
-    
     try:
-        # Sélection de la base et collection
-        db = client['datasolutech']
-        collection = db['healthcare_dataset']
+        # 1. Récupération du CSV source
+        logging.info("Téléchargement du CSV")
+        import_data()
 
-        # Chargement du fichier CSV
+        # 2. Chargement du CSV dans un DataFrame
         csv_file = "dataset/healthcare_dataset.csv"  
         df = load_csv_data(csv_file)
         if df is None:
             logging.error("❌ Chargement du CSV échoué.")
             sys.exit(1)
-        
-        # Migration des données
+
+        # 3. Nettoyage du DataFrame
+        df = normalize_df(df)
+
+        # 4. Contrôle du DataFrame avant migration
+        df_info = check_dataframe(df)
+
+        # 5. Création database et collection MongoDB 
+        client = connect_to_mongodb()
+        if not client:
+            sys.exit(1)
+        db = client['datasolutech']
+        collection = db['healthcare_dataset']
+
+        # 6. Vider la collection avant migration
+        collection.delete_many({})
+
+        # 7. Migration des données
+        logging.info("Démarrage de la migration")
         migrate_data(collection, df)
-        
-        logging.info("✅ Migration terminée avec succès!")
-        
+
+        # 8. Contrôle de la collection après migration
+        mongo_info = check_collection(collection, colonnes_ref=df.columns.tolist())
+
+        # 9. Compare le dataframe et la collection
+        test_compare(df_info, mongo_info)
+
+
     except Exception as e:
-        logging.error(f"❌ Erreur migration: {e}")
+        logging.error(f"❌ Erreur du script: {e}")
+        sys.exit(1)
     finally:
-        # Fermeture de la connexion
-        client.close()
-        logging.info("Connexion MongoDB fermée")
+        try:
+            # 10. Fermeture de la connection MongoDB
+            client.close()
+            logging.info("Connexion MongoDB fermée")
+        except Exception:
+            pass

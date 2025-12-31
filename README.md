@@ -240,11 +240,9 @@ Pour cette partie du projet, deux utilisateurs avec des rôles distincts sont cr
 
 1. Administrateur avec tous les droits :
 
-l'utilisateur `root` est créé automatiquement par MongoDB grâce aux variables d’environnement dans le `docker-compose.yml` :
-MONGO_INITDB_ROOT_USERNAME=root
-MONGO_INITDB_ROOT_PASSWORD=root
+l'utilisateur `root` est créé automatiquement par MongoDB grâce aux variables d’environnement dans le `docker-compose.yml`.
 
-Connection avec ce rôle:
+Connexion avec ce rôle:
 
 ```sh
 mongodb://root:root@localhost:27018
@@ -255,19 +253,19 @@ mongodb://root:root@localhost:27018
 L'utilisateur `user` est créé dans le script avec un rôle limité.
 
 ```sh
-        # Création d'un utilisateur lecture seule
-        mongo_user = os.getenv("MONGO_USER", "user")
-        mongo_user_pwd = os.getenv("MONGO_USER_PASSWORD", "user")
-        db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
+# Création d'un utilisateur lecture seule
+mongo_user = os.getenv("MONGO_USER", "user")
+mongo_user_pwd = os.getenv("MONGO_USER_PASSWORD", "user")
+db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
 ```
 
-Connection avec ce rôle:
+Connexion avec ce rôle:
 
 ```sh
 mongodb://user:user@localhost:27018/datasolutech
 ```
 
-## Hashage des mots de passe
+## ⚠️ Hashage des mots de passe ⚠️
 
 A des fins pédagogiques des mots de passes simples sont en clair sur ce projet mais une bonne pratique est d'utiliser des variables d'environnement avec un fichier `.env` non versionné en l'ajoutant au fichier `.gitignore`.
 

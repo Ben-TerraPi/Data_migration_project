@@ -103,7 +103,7 @@ db = client['datasolutech']
 collection = db['healthcare_dataset']
 ```
 
-## Schéma de la collection `healthcare_dataset`
+#### Schéma de la collection `healthcare_dataset`
 
 | Champ                | Type      | Description                        |
 |----------------------|-----------|------------------------------------|
@@ -124,7 +124,7 @@ collection = db['healthcare_dataset']
 | Medication           | string    | Médication principale              |
 | Test Results         | string    | Résultat des tests                 |
 
-## Exemple de document
+#### Exemple de document
 
 ```sh
 {

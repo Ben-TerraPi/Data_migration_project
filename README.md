@@ -221,6 +221,12 @@ cd Data_migration_project
 docker-compose up --build
 ```
 
+### Arrêter et nettoyer Docker
+
+```sh
+docker-compose down
+```
+
 ---
 
 ## 📚 Ressources utiles

@@ -8,6 +8,8 @@ Ce projet intitulé `Maintenez et documentez un système de stockage des donnée
 
 ---
 
+# Migration vers MongoDB
+
 ## 🛠 Installations
 
 ### 🍃 MongoDB (Local)
@@ -181,6 +183,43 @@ Grâce à la fonction `test_compare` nous reprenons les informations de l'étape
 ### 10. Fermeture de la connection MongoDB
 
 Utilisation de la méthode `.close()` de la librairie pymongo.
+
+---
+
+# Conteneurisation avec Docker
+
+## Fonctionnement
+
+**Docker** permet d’exécuter l'application dans un environnement isolé, appelé « conteneur », qui contient tout ce dont elle a besoin (Python, dépendances, code…).
+
+**Docker Compose** permet de lancer plusieurs conteneurs qui communiquent ensemble (ici : un pour MongoDB, un pour le script Python).
+
+## Structure des fichiers importants
+
+- **Dockerfile** : décrit comment construire l’image de l'application Python.
+- **docker-compose.yml** : décrit comment lancer les différents conteneurs (MongoDB + application).
+- **requirements.txt** : liste les librairies Python à installer dans le conteneur.
+- **main.py** : Le script python de l'application
+
+## Utilisation de l'application
+
+### Installation de Docker 🐳
+
+[Docker Desktop](https://www.docker.com/products/docker-desktop/) (windows/mac)
+[Docker Engine](https://docs.docker.com/engine/install/) (Linux)
+
+### Cloner le projet depuis Github
+
+```sh
+git clone https://github.com/Ben-TerraPi/Data_migration_project.git
+cd Data_migration_project
+```
+
+### Lancer les conteneurs avec Docker Compose
+
+```sh
+docker-compose up --build
+```
 
 ---
 

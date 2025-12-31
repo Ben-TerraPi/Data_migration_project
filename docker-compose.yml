@@ -8,8 +8,8 @@ services:
       - mongo_data:/data/db
       - ./mongo-init:/docker-entrypoint-initdb.d
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
 
   migration:
     build: .

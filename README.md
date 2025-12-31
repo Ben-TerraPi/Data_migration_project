@@ -89,7 +89,8 @@ def connect_to_mongodb():
     """
     Connexion à MongoDB
     """
-    client = MongoClient('mongodb://localhost:27017/')
+    mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+    client = MongoClient(mongo_uri)
     logging.info("Connexion MongoDB")
     return client
 ```

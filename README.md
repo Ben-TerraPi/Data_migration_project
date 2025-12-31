@@ -234,10 +234,30 @@ docker-compose down
 
 ---
 
-# Vérification BDD MongoDB
+# Base de données MongoDB
+
+Pour cette partie du projet, deux utilisateurs avec des rôles distincts sont créés.
+
+1. Administrateur avec tous les droits :
+
+l'utilisateur `root` est créé automatiquement par MongoDB grâce aux variables d’environnement dans le `docker-compose.yml` :
+MONGO_INITDB_ROOT_USERNAME=root
+MONGO_INITDB_ROOT_PASSWORD=root
+
+Connection avec ce rôle:
 
 ```sh
-mongodb://admin:admin@localhost:27018
+mongodb://root:root@localhost:27018
+```
+
+2. Utilisateur en lecture seule :
+
+L'utilisateur `user` est créé avec un script JS pour ne lui attribuer que le rôle de lecture seule.
+
+Connection avec ce rôle:
+
+```sh
+mongodb://user:user@localhost:27018/datasolutech
 ```
 
 # 📚 Ressources utiles

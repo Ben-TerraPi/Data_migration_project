@@ -30,7 +30,7 @@ pip install pymongo
 
 ## Fonctionnement par étape du script `src/main.py`
 
-Nous retrouvons dans le fichier `src/utils.py` les fonctions ci-dessous utilisées dans le script.
+Nous retrouvons dans le fichier `src/utils.py` les fonctions ci-dessous utilisées dans le script. Un logger est de plus configuré pour s'assurer du bon fonctionnement de ce script.
 
 ### 1. Récupération du CSV source
 
@@ -65,19 +65,17 @@ def import_data():
 
 ### 2. Chargement du CSV dans un DataFrame
 
-```sh
-def load_csv_data(file_path):
-    """
-    Charge les données depuis un fichier CSV
-    """
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Fichier '{file_path}' introuvable")
-    df = pd.read_csv(file_path)
-    logging.info(f"Fichier CSV chargé: {len(df)} lignes")
-    return df
-```
+Pour manipuler les données avant leur migration.
 
-### 3. Création du serveur MongoDB
+### 3. Nettoyage du DataFrame
+
+Un nettoyage est effectué pour corriger la « casse irrégulière » des noms et la suppression des doublons.
+
+### 4. Contrôle du DataFrame avant migration
+
+Ici la fonction `check_dataframe` va servir à afficher dans les logs le nom et le type des différentes colonnes. Et dans un deuxième temps elle sera utilisé pour comparer les données après migration.
+
+### 5. Création database et collection MongoDB
 
 Une connection est ajouté et ouverte en utilisant le port local par défaut:
 
@@ -89,6 +87,17 @@ def connect_to_mongodb():
     client = MongoClient('mongodb://localhost:27017/')
     logging.info("Connexion MongoDB")
     return client
+```
+
+Avec MongoDB, nous n’avons pas besoin d’initialiser la base de données ou la collection en amont.
+MongoDB cré automatiquement la base `datasolutech` et la collection `healthcare_dataset` lors de la première insertion de documents si elles n’existent pas déjà.
+
+```sh
+client = connect_to_mongodb()
+if not client:
+    sys.exit(1)
+db = client['datasolutech']
+collection = db['healthcare_dataset']
 ```
 
 ### Schéma de la collection `healthcare_dataset`

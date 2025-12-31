@@ -1,14 +1,20 @@
-# Data_migration_project
-
 ## Context
 
 Ce projet a été réalisé dans le cadre de mon parcours de formation 'Data Engineer' avec OpenClassrooms.
 
-Ce projet intitulé `Maintenez et documentez un système de stockage des données sécurisé et performant`, consiste en une migraion de données issue d'un fichier csv vers une base de donnée **MongoDB** en se servant d'un script **python** puis de conteneuriser cette application avec **Docker**.
+Titre du projet :
+
+`Maintenez et documentez un système de stockage des données sécurisé et performant`
+
+Ce projet consiste à :
+
+- Extraire et nettoyer un jeu de données médicales au format CSV (issu de Kaggle).
+- Migrer ces données vers une base de données **MongoDB** à l’aide d’un script **Python**, en garantissant la performance et la sécurité du stockage.
+- Containeriser l’application avec **Docker** pour faciliter son déploiement et sa scalabilité.
 
 ---
 
-# Migration vers MongoDB
+# Extraction et migration vers MongoDB
 
 ## 🛠 Installations
 
@@ -27,8 +33,6 @@ Ce projet utilise **MongoDB** comme base de données NoSQL.
 ```sh
 pip install pymongo
 ```
-
----
 
 ## Fonctionnement par étape du script `src/main.py`
 
@@ -236,7 +240,9 @@ docker-compose down
 mongodb://admin:admin@localhost:27018
 ```
 
-## 📚 Ressources utiles
+# 📚 Ressources utiles
 
 - [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.
 - [PyMongo Documentation](https://pymongo.readthedocs.io/en/stable/) - Documentation pour utiliser MongoDB avec Python.
+- [Docker Compose - Guide officiel](https://docs.docker.com/compose/)
+- [Formation OpenClassrooms - Docker](https://openclassrooms.com/fr/courses/8431896-optimisez-votre-deploiement-en-creant-des-conteneurs-avec-docker)

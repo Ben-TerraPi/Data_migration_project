@@ -260,6 +260,10 @@ Connection avec ce rôle:
 mongodb://user:user@localhost:27018/datasolutech
 ```
 
+## Hashage des mots de passe
+
+A des fins pédagogiques des mots de passes simples sont en clair sur ce projet mais une bonne pratique est d'utiliser des variables d'environnement avec un fichier `.env` non versionné en l'ajoutant au fichier `.gitignore`.
+
 # 📚 Ressources utiles
 
 - [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.

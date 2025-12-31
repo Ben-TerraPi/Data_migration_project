@@ -50,11 +50,7 @@ if __name__ == "__main__":
         # Création d'un utilisateur lecture seule
         mongo_user = os.getenv("MONGO_USER", "user")
         mongo_user_pwd = os.getenv("MONGO_USER_PASSWORD", "user")
-        try:
-            db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
-            logging.info(f"Utilisateur '{mongo_user}' créé avec rôle lecture seule.")
-        except Exception as e:
-            logging.info(f"Création utilisateur : {e}")
+        db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
 
         # 6. Vider la collection avant migration
         collection.delete_many({})

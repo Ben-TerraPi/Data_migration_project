@@ -252,7 +252,14 @@ mongodb://root:root@localhost:27018
 
 2. Utilisateur en lecture seule :
 
-L'utilisateur `user` est créé avec un script JS pour ne lui attribuer que le rôle de lecture seule.
+L'utilisateur `user` est créé dans le script avec un rôle limité.
+
+```sh
+        # Création d'un utilisateur lecture seule
+        mongo_user = os.getenv("MONGO_USER", "user")
+        mongo_user_pwd = os.getenv("MONGO_USER_PASSWORD", "user")
+        db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
+```
 
 Connection avec ce rôle:
 

@@ -271,9 +271,35 @@ A des fins pédagogiques des mots de passes simples sont en clair sur ce projet 
 
 ---
 
+# EDIT Test unitaire avec pytest
+
+Des tests unitaires ont été ajoutés dans le fichier `src/test_main.py` pour valider le bon fonctionnement du script principal (`main.py`) sans avoir besoin d'une vraie base MongoDB ou d'un vrai fichier CSV.
+
+Ces tests utilisent la librairie **pytest** et des mocks pour simuler les dépendances externes (MongoDB, fichiers, logs, etc.). Grâce aux mocks, aucun besoin de configurer une vraie base MongoDB ou de manipuler des fichiers réels pour tester la logique du script.
+
+## Lancer les tests
+
+Depuis la racine du projet, exécute simplement :
+
+```sh
+pytest src/test_main.py
+```
+
+## Résultat
+
+======================================= test session start =======================================
+platform win32 -- Python 3.12.0, pytest-9.0.2, pluggy-1.6.0
+rootdir: C:\Users\benoit\code\Ben-TerraPi\Data_migration_project
+collected 2 items                                                                                  
+
+src\test_main.py ..                                                                          [100%] 
+
+======================================== 2 passed in 1.08s ========================================
+
 # 📚 Ressources utiles
 
 - [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.
 - [PyMongo Documentation](https://pymongo.readthedocs.io/en/stable/) - Documentation pour utiliser MongoDB avec Python.
+- [pytest Documentation](https://docs.pytest.org/)
 - [Docker Compose - Guide officiel](https://docs.docker.com/compose/)
 - [Formation OpenClassrooms - Docker](https://openclassrooms.com/fr/courses/8431896-optimisez-votre-deploiement-en-creant-des-conteneurs-avec-docker)

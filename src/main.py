@@ -51,6 +51,7 @@ def main_run():
         # Création d'un utilisateur lecture seule
         mongo_user = os.getenv("MONGO_USER", "user")
         mongo_user_pwd = os.getenv("MONGO_USER_PASSWORD", "user")
+        db.command("dropUser", mongo_user) # supprime USER si le script est relancé.
         db.command("createUser", mongo_user, pwd=mongo_user_pwd, roles=[{"role": "read", "db": "datasolutech"}])
 
         # 6. Vider la collection avant migration

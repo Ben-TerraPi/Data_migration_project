@@ -296,6 +296,57 @@ src\test_main.py ..                                                             
 
 ======================================== 2 passed in 1.08s ========================================
 
+---
+
+# Exemple de Logs
+
+2026-01-14 16:37:03,431 [INFO] Téléchargement du CSV
+2026-01-14 16:37:04,040 [INFO] Fichier déjà présent, non copié : healthcare_dataset.csv
+2026-01-14 16:37:04,041 [INFO] Dataset disponible dans: C:\Users\benoit\code\Ben-TerraPi\Data_migration_project\dataset
+2026-01-14 16:37:04,174 [INFO] Fichier CSV chargé: 55500 lignes
+2026-01-14 16:37:04,231 [INFO] 54966 lignes après suppression des doublons
+2026-01-14 16:37:04,293 [INFO] [DF] Colonne: Name | Type: object
+2026-01-14 16:37:04,293 [INFO] [DF] Colonne: Age | Type: int64
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Gender | Type: object
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Blood Type | Type: object
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Medical Condition | Type: object
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Date of Admission | Type: object
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Doctor | Type: object
+2026-01-14 16:37:04,294 [INFO] [DF] Colonne: Hospital | Type: object
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Insurance Provider | Type: object
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Billing Amount | Type: float64
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Room Number | Type: int64
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Admission Type | Type: object
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Discharge Date | Type: object
+2026-01-14 16:37:04,295 [INFO] [DF] Colonne: Medication | Type: object
+2026-01-14 16:37:04,296 [INFO] [DF] Colonne: Test Results | Type: object
+2026-01-14 16:37:04,298 [INFO] Connexion MongoDB
+2026-01-14 16:37:04,403 [INFO] Démarrage de la migration
+2026-01-14 16:37:05,492 [INFO] ✅ Migration réussie: 54966 documents insérés
+2026-01-14 16:37:05,514 [INFO] [MongoDB] Colonne: _id | Type: ObjectId
+2026-01-14 16:37:05,514 [INFO] [MongoDB] Colonne: Name | Type: str
+2026-01-14 16:37:05,514 [INFO] [MongoDB] Colonne: Age | Type: int
+2026-01-14 16:37:05,514 [INFO] [MongoDB] Colonne: Gender | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Blood Type | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Medical Condition | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Date of Admission | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Doctor | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Hospital | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Insurance Provider | Type: str
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Billing Amount | Type: float
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Room Number | Type: int
+2026-01-14 16:37:05,515 [INFO] [MongoDB] Colonne: Admission Type | Type: str
+2026-01-14 16:37:05,516 [INFO] [MongoDB] Colonne: Discharge Date | Type: str
+2026-01-14 16:37:05,516 [INFO] [MongoDB] Colonne: Medication | Type: str
+2026-01-14 16:37:05,516 [INFO] [MongoDB] Colonne: Test Results | Type: str
+2026-01-14 16:37:06,970 [INFO] === Comparaison ===
+2026-01-14 16:37:06,971 [INFO] Doublons DF=0, MongoDB=0
+2026-01-14 16:37:06,971 [INFO] Colonnes identiques (hors _id) : True
+2026-01-14 16:37:06,972 [INFO] Valeurs manquantes DF=0, MongoDB=0
+2026-01-14 16:37:06,973 [INFO] Connexion MongoDB fermée
+
+---
+
 # 📚 Ressources utiles
 
 - [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.

@@ -301,6 +301,7 @@ src\test_main.py ..                                                             
 
 # Exemple de Logs
 
+```log
 2026-01-14 16:37:03,431 [INFO] Téléchargement du CSV
 2026-01-14 16:37:04,040 [INFO] Fichier déjà présent, non copié : healthcare_dataset.csv
 2026-01-14 16:37:04,041 [INFO] Dataset disponible dans: C:\Users\benoit\code\Ben-TerraPi\Data_migration_project\dataset
@@ -345,7 +346,7 @@ src\test_main.py ..                                                             
 2026-01-14 16:37:06,971 [INFO] Colonnes identiques (hors _id) : True
 2026-01-14 16:37:06,972 [INFO] Valeurs manquantes DF=0, MongoDB=0
 2026-01-14 16:37:06,973 [INFO] Connexion MongoDB fermée
-
+```
 ---
 
 # 📚 Ressources utiles

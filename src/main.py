@@ -21,7 +21,8 @@ logging.basicConfig(
     ]
 )
 
-if __name__ == "__main__":
+def main_run():
+    client = None
     try:
         # 1. Récupération du CSV source
         logging.info("Téléchargement du CSV")
@@ -76,3 +77,6 @@ if __name__ == "__main__":
             logging.info("Connexion MongoDB fermée")
         except Exception:
             pass
+
+if __name__ == "__main__":
+    main_run()

@@ -16,9 +16,9 @@ Ce projet consiste à :
 
 # Extraction et migration vers MongoDB
 
-## 🛠 Installations
+## Installations
 
-### 🍃 MongoDB (Local)
+### MongoDB (Local)
 
 Ce projet utilise **MongoDB** comme base de données NoSQL.
 
@@ -29,7 +29,7 @@ Ce projet utilise **MongoDB** comme base de données NoSQL.
    - [MongoDB Compass](https://www.mongodb.com/products/compass).
    - [Extension MongoDB pour VS Code](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode) (pour manipuler la base directement depuis l'éditeur).
 
-### 🐍 Utilisation avec Python
+### Utilisation avec Python
 ```sh
 pip install pymongo
 ```
@@ -208,7 +208,7 @@ Utilisation de la méthode `.close()` de la librairie pymongo.
 
 ## Utilisation de l'application
 
-### Installation de Docker 🐳
+### Installation de Docker
 
 [Docker Desktop](https://www.docker.com/products/docker-desktop/) (windows/mac)
 [Docker Engine](https://docs.docker.com/engine/install/) (Linux)

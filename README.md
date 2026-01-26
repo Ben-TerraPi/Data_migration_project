@@ -347,12 +347,3 @@ src\test_main.py ..                                                             
 2026-01-14 16:37:06,972 [INFO] Valeurs manquantes DF=0, MongoDB=0
 2026-01-14 16:37:06,973 [INFO] Connexion MongoDB fermée
 ```
----
-
-# 📚 Ressources utiles
-
-- [MongoDB University](https://learn.mongodb.com/) - Apprendre à utiliser MongoDB.
-- [PyMongo Documentation](https://pymongo.readthedocs.io/en/stable/) - Documentation pour utiliser MongoDB avec Python.
-- [pytest Documentation](https://docs.pytest.org/)
-- [Docker Compose - Guide officiel](https://docs.docker.com/compose/)
-- [Formation OpenClassrooms - Docker](https://openclassrooms.com/fr/courses/8431896-optimisez-votre-deploiement-en-creant-des-conteneurs-avec-docker)
